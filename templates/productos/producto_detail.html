@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ producto.nombre }}
+{% endblock %}
+
+{% block content %}
+
+<div class="max-w-2xl mx-auto">
+
+    <div class="bg-white rounded-xl shadow p-8">
+
+        <h1 class="text-3xl font-bold mb-6">
+            {{ producto.nombre }}
+        </h1>
+
+        <div class="space-y-4">
+
+            <div>
+                <p class="text-sm text-gray-500">
+                    Descripción
+                </p>
+
+                <p>
+                    {{ producto.descripcion }}
+                </p>
+            </div>
+
+            <div>
+                <p class="text-sm text-gray-500">
+                    Precio
+                </p>
+
+                <p class="text-xl font-semibold">
+                    ${{ producto.precio }}
+                </p>
+            </div>
+
+            <div>
+                <p class="text-sm text-gray-500">
+                    Stock
+                </p>
+
+                <p>
+                    {{ producto.stock }} unidades
+                </p>
+            </div>
+
+        </div>
+
+        <div class="flex gap-3 mt-8">
+
+            <a
+                href="{% url 'producto-update' producto.pk %}"
+                class="bg-green-600 text-white px-5 py-2 rounded-lg hover:bg-green-700">
+
+                Editar
+
+            </a>
+
+            <a
+                href="{% url 'producto-delete' producto.pk %}"
+                class="bg-red-600 text-white px-5 py-2 rounded-lg hover:bg-red-700">
+
+                Eliminar
+
+            </a>
+
+            <a
+                href="{% url 'producto-list' %}"
+                class="bg-gray-200 px-5 py-2 rounded-lg hover:bg-gray-300">
+
+                Volver
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

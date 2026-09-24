@@ -1,0 +1,55 @@
+{% load static tailwind_tags %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}CRUD Django{% endblock %}
+    </title>
+
+    {% tailwind_css %}
+</head>
+
+<body class="bg-gray-100 text-gray-900">
+
+    <nav class="bg-gray-900 text-white">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between">
+
+            <a href="{% url 'producto-list' %}"
+               class="text-xl font-bold">
+                CRUD Django
+            </a>
+
+            {% if user.is_authenticated %}
+
+                <div class="flex items-center gap-4">
+
+                    <span>
+                        {{ user.username }}
+                    </span>
+
+                    <a href="{% url 'logout' %}"
+                       class="text-gray-300 hover:text-white">
+                        Cerrar sesión
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 py-8">
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Iniciar sesión
+{% endblock %}
+
+{% block content %}
+
+<div class="min-h-[70vh] flex items-center justify-center">
+
+    <div class="bg-white w-full max-w-md p-8 rounded-xl shadow-md">
+
+        <h1 class="text-3xl font-bold text-center mb-2">
+            Iniciar sesión
+        </h1>
+
+        <p class="text-gray-500 text-center mb-6">
+            Ingresa a tu cuenta
+        </p>
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            {{ form|crispy }}
+
+            <button
+                type="submit"
+                class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">
+
+                Iniciar sesión
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
