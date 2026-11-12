@@ -46,6 +46,18 @@
                 </p>
             </div>
 
+            {% if user.is_staff %}
+            <div>
+                <p class="text-sm text-gray-500">
+                    Costo interno
+                </p>
+
+                <p>
+                    ${{ producto.costo_interno }}
+                </p>
+            </div>
+            {% endif %}
+
         </div>
 
         <div class="flex gap-3 mt-8">
