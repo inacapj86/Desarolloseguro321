@@ -128,7 +128,8 @@ WSGI_APPLICATION = 'crud_django.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # En Docker apunta a un volumen (/data); en local usa db.sqlite3.
+        'NAME': env("DATABASE_PATH", default=str(BASE_DIR / "db.sqlite3")),
     }
 }
 
@@ -174,6 +175,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,"static")    
 ]
+
+# Archivos estaticos en el contenedor: con DEBUG=False Django no los sirve,
+# asi que el perfil de laboratorio activa WhiteNoise (USAR_WHITENOISE=True).
+USAR_WHITENOISE = env.bool("USAR_WHITENOISE", default=False)
+if USAR_WHITENOISE:
+    MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
+    STORAGES = {
+        "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
+        "staticfiles": {"BACKEND": "whitenoise.storage.CompressedStaticFilesStorage"},
+    }
 
 # Email
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
