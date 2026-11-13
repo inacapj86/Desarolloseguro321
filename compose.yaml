@@ -1,0 +1,14 @@
+services:
+  web:
+    build: .
+    image: crud-django-lab:1.0
+    env_file: .env
+    ports:
+      # Publicado solo en la interfaz local: no es accesible desde otros equipos.
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - db_data:/data
+    restart: unless-stopped
+
+volumes:
+  db_data:
