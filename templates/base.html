@@ -32,10 +32,13 @@
                         {{ user.username }}
                     </span>
 
-                    <a href="{% url 'logout' %}"
-                       class="text-gray-300 hover:text-white">
-                        Cerrar sesión
-                    </a>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit"
+                                class="text-gray-300 hover:text-white">
+                            Cerrar sesión
+                        </button>
+                    </form>
 
                 </div>
 
