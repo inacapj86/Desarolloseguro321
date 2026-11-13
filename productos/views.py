@@ -1,4 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
 from django.urls import reverse_lazy
 from django.views.generic import (
     ListView,
@@ -12,7 +14,19 @@ from .forms import ProductoForm
 from .models import Producto
 
 
-class SoloSusRegistrosMixin(LoginRequiredMixin):
+class SinCacheMixin:
+    """Las paginas privadas no deben guardarse en cache del navegador ni de proxies.
+
+    never_cache agrega Cache-Control: max-age=0, no-cache, no-store,
+    must-revalidate, private (y Expires), tambien a las redirecciones al login.
+    """
+
+    @method_decorator(never_cache)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+
+class SoloSusRegistrosMixin(SinCacheMixin, LoginRequiredMixin):
     """Autorizacion en el servidor, a nivel de registro.
 
     - Usuario normal: solo ve, edita y elimina los productos que creo.
@@ -48,7 +62,7 @@ class ProductoDetailView(SoloSusRegistrosMixin, DetailView):
     context_object_name = 'producto'
 
 
-class ProductoCreateView(LoginRequiredMixin, FormularioConUsuarioMixin, CreateView):
+class ProductoCreateView(SinCacheMixin, LoginRequiredMixin, FormularioConUsuarioMixin, CreateView):
     model = Producto
     template_name = 'productos/producto_form.html'
     success_url = reverse_lazy('producto-list')
