@@ -94,6 +94,7 @@ TAILWIND_APP_NAME = "theme"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'django.middleware.csp.ContentSecurityPolicyMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -175,6 +176,27 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,"static")    
 ]
+
+# --- Endurecimiento tras el analisis inicial con ZAP (etapa 5) ---
+# CSP (hallazgo 10038): la aplicacion no usa scripts ni estilos en linea ni
+# recursos externos, por eso basta con permitir solo el propio origen.
+from django.utils.csp import CSP  # noqa: E402
+
+SECURE_CSP = {
+    "default-src": [CSP.SELF],
+    "base-uri": [CSP.SELF],
+    "form-action": [CSP.SELF],
+    "frame-ancestors": [CSP.NONE],
+    "object-src": [CSP.NONE],
+}
+
+# Cookie del token CSRF (hallazgo 10010): los formularios envian el token por el
+# campo oculto, asi que JavaScript no necesita leer la cookie.
+CSRF_COOKIE_HTTPONLY = True
+
+# CORS de los estaticos (hallazgo 10098): WhiteNoise envia por defecto
+# "Access-Control-Allow-Origin: *". Se desactiva porque nadie mas necesita el CSS.
+WHITENOISE_ALLOW_ALL_ORIGINS = False
 
 # Archivos estaticos en el contenedor: con DEBUG=False Django no los sirve,
 # asi que el perfil de laboratorio activa WhiteNoise (USAR_WHITENOISE=True).
