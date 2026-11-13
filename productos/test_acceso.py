@@ -92,9 +92,11 @@ class AutenticacionTests(BaseAcceso):
         self.assertNotIn("_auth_user_id", self.client.session)
 
     def test_logout_sin_token_csrf_se_rechaza(self):
+        # Se envia un Referer valido para que el rechazo se deba solo al token faltante.
         cliente = Client(enforce_csrf_checks=True)
         cliente.force_login(self.ana)
-        resp = cliente.post(reverse("logout"), secure=True)
+        resp = cliente.post(reverse("logout"), secure=True,
+                            headers={"referer": "https://testserver/"})
         self.assertEqual(resp.status_code, 403)
         self.assertIn("_auth_user_id", cliente.session)
 
