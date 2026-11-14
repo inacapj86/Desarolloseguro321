@@ -8,8 +8,8 @@ ZAP by [Checkmarx](https://checkmarx.com/).
 | Risk Level | Number of Alerts |
 | --- | --- |
 | High | 0 |
-| Medium | 2 |
-| Low | 4 |
+| Medium | 1 |
+| Low | 3 |
 | Informational | 4 |
 
 
@@ -19,16 +19,16 @@ ZAP by [Checkmarx](https://checkmarx.com/).
 
 | Level | Reason | Site | Description | Statistic |
 | --- | --- | --- | --- | --- |
-| Low | Warning |  | ZAP warnings logged - see the zap.log file for details | 3    |
-| Info | Informational | http://127.0.0.1:8000 | Percentage of responses with status code 2xx | 56 % |
-| Info | Informational | http://127.0.0.1:8000 | Percentage of responses with status code 3xx | 34 % |
-| Info | Informational | http://127.0.0.1:8000 | Percentage of responses with status code 4xx | 9 % |
-| Info | Informational | http://127.0.0.1:8000 | Percentage of endpoints with content type text/css | 5 % |
-| Info | Informational | http://127.0.0.1:8000 | Percentage of endpoints with content type text/html | 95 % |
-| Info | Informational | http://127.0.0.1:8000 | Percentage of endpoints with method GET | 60 % |
-| Info | Informational | http://127.0.0.1:8000 | Percentage of endpoints with method POST | 40 % |
-| Info | Informational | http://127.0.0.1:8000 | Count of total endpoints | 20    |
-| Info | Informational | http://127.0.0.1:8000 | Percentage of slow responses | 13 % |
+| Low | Warning |  | ZAP warnings logged - see the zap.log file for details | 1    |
+| Info | Informational | http://127.0.0.1:8000 | Percentage of responses with status code 2xx | 60 % |
+| Info | Informational | http://127.0.0.1:8000 | Percentage of responses with status code 3xx | 33 % |
+| Info | Informational | http://127.0.0.1:8000 | Percentage of responses with status code 4xx | 6 % |
+| Info | Informational | http://127.0.0.1:8000 | Percentage of endpoints with content type text/css | 6 % |
+| Info | Informational | http://127.0.0.1:8000 | Percentage of endpoints with content type text/html | 93 % |
+| Info | Informational | http://127.0.0.1:8000 | Percentage of endpoints with method GET | 62 % |
+| Info | Informational | http://127.0.0.1:8000 | Percentage of endpoints with method POST | 37 % |
+| Info | Informational | http://127.0.0.1:8000 | Count of total endpoints | 16    |
+| Info | Informational | http://127.0.0.1:8000 | Percentage of slow responses | 10 % |
 | Info | Informational | https://edge-consumer-static.azureedge.net | Percentage of responses with status code 2xx | 100 % |
 | Info | Informational | https://edge-consumer-static.azureedge.net | Percentage of endpoints with content type application/json | 100 % |
 | Info | Informational | https://edge-consumer-static.azureedge.net | Percentage of endpoints with method GET | 100 % |
@@ -37,12 +37,7 @@ ZAP by [Checkmarx](https://checkmarx.com/).
 | Info | Informational | https://editor.svc.cloud.microsoft | Percentage of endpoints with content type application/json | 100 % |
 | Info | Informational | https://editor.svc.cloud.microsoft | Percentage of endpoints with method POST | 100 % |
 | Info | Informational | https://editor.svc.cloud.microsoft | Count of total endpoints | 1    |
-| Info | Informational | https://editor.svc.cloud.microsoft | Percentage of slow responses | 33 % |
-| Info | Informational | https://xpaywalletcdn-prod.azureedge.net | Percentage of responses with status code 2xx | 100 % |
-| Info | Informational | https://xpaywalletcdn-prod.azureedge.net | Percentage of endpoints with content type text/plain | 100 % |
-| Info | Informational | https://xpaywalletcdn-prod.azureedge.net | Percentage of endpoints with method GET | 100 % |
-| Info | Informational | https://xpaywalletcdn-prod.azureedge.net | Count of total endpoints | 1    |
-| Info | Informational | https://xpaywalletcdn-prod.azureedge.net | Percentage of slow responses | 100 % |
+| Info | Informational | https://editor.svc.cloud.microsoft | Percentage of slow responses | 50 % |
 
 
 
@@ -54,16 +49,14 @@ ZAP by [Checkmarx](https://checkmarx.com/).
 
 | Name | Risk Level | Number of Instances |
 | --- | --- | --- |
-| Content Security Policy (CSP) Header Not Set | Medium | Systemic |
-| Cross-Domain Misconfiguration | Medium | 2 |
-| Cookie No HttpOnly Flag | Low | Systemic |
+| Cross-Domain Misconfiguration | Medium | 1 |
 | Server Leaks Version Information via "Server" HTTP Response Header Field | Low | 1 |
 | Strict-Transport-Security Header Not Set | Low | 1 |
-| X-Content-Type-Options Header Missing | Low | 2 |
+| X-Content-Type-Options Header Missing | Low | 1 |
 | Authentication Request Identified | Informational | 2 |
-| Re-examine Cache-control Directives | Informational | 2 |
-| Session Management Response Identified | Informational | 14 |
-| User Controllable HTML Element Attribute (Potential XSS) | Informational | 4 |
+| Re-examine Cache-control Directives | Informational | 1 |
+| Session Management Response Identified | Informational | 13 |
+| User Controllable HTML Element Attribute (Potential XSS) | Informational | 5 |
 
 
 
@@ -71,78 +64,6 @@ ZAP by [Checkmarx](https://checkmarx.com/).
 ## Alert Detail
 
 
-
-### [ Content Security Policy (CSP) Header Not Set ](https://www.zaproxy.org/docs/alerts/10038/)
-
-
-
-##### Medium (High)
-
-### Description
-
-Content Security Policy (CSP) is an added layer of security that helps to detect and mitigate certain types of attacks, including Cross Site Scripting (XSS) and data injection attacks. These attacks are used for everything from data theft to site defacement or distribution of malware. CSP provides a set of standard HTTP headers that allow website owners to declare approved sources of content that browsers should be allowed to load on that page — covered types are JavaScript, CSS, HTML frames, fonts, images and embeddable objects such as Java applets, ActiveX, audio and video files.
-
-* URL: http://127.0.0.1:8000/
-  * Node Name: `http://127.0.0.1:8000/`
-  * Method: `GET`
-  * Parameter: ``
-  * Attack: ``
-  * Evidence: ``
-  * Other Info: ``
-* URL: http://127.0.0.1:8000/login/%3Fnext=/
-  * Node Name: `http://127.0.0.1:8000/login/ (next)`
-  * Method: `GET`
-  * Parameter: ``
-  * Attack: ``
-  * Evidence: ``
-  * Other Info: ``
-* URL: http://127.0.0.1:8000/producto/2/
-  * Node Name: `http://127.0.0.1:8000/producto/2/`
-  * Method: `GET`
-  * Parameter: ``
-  * Attack: ``
-  * Evidence: ``
-  * Other Info: ``
-* URL: http://127.0.0.1:8000/producto/nuevo/
-  * Node Name: `http://127.0.0.1:8000/producto/nuevo/`
-  * Method: `GET`
-  * Parameter: ``
-  * Attack: ``
-  * Evidence: ``
-  * Other Info: ``
-* URL: http://127.0.0.1:8000/login/%3Fnext=/producto/2/
-  * Node Name: `http://127.0.0.1:8000/login/ (next)(csrfmiddlewaretoken,password,username)`
-  * Method: `POST`
-  * Parameter: ``
-  * Attack: ``
-  * Evidence: ``
-  * Other Info: ``
-
-Instances: Systemic
-
-
-### Solution
-
-Ensure that your web server, application server, load balancer, etc. is configured to set the Content-Security-Policy header.
-
-### Reference
-
-
-* [ https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP ](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP)
-* [ https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html ](https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html)
-* [ https://www.w3.org/TR/CSP/ ](https://www.w3.org/TR/CSP/)
-* [ https://w3c.github.io/webappsec-csp/ ](https://w3c.github.io/webappsec-csp/)
-* [ https://web.dev/articles/csp ](https://web.dev/articles/csp)
-* [ https://caniuse.com/#feat=contentsecuritypolicy ](https://caniuse.com/#feat=contentsecuritypolicy)
-* [ https://content-security-policy.com/ ](https://content-security-policy.com/)
-
-
-#### CWE Id: [ 693 ](https://cwe.mitre.org/data/definitions/693.html)
-
-
-#### WASC Id: 15
-
-#### Source ID: 3
 
 ### [ Cross-Domain Misconfiguration ](https://www.zaproxy.org/docs/alerts/10098/)
 
@@ -154,13 +75,6 @@ Ensure that your web server, application server, load balancer, etc. is configur
 
 Web browser data loading may be possible, due to a Cross Origin Resource Sharing (CORS) misconfiguration on the web server.
 
-* URL: http://127.0.0.1:8000/static/css/dist/styles.css
-  * Node Name: `http://127.0.0.1:8000/static/css/dist/styles.css`
-  * Method: `GET`
-  * Parameter: ``
-  * Attack: ``
-  * Evidence: `Access-Control-Allow-Origin: *`
-  * Other Info: `The CORS misconfiguration on the web server permits cross-domain read requests from arbitrary third party domains, using unauthenticated APIs on this domain. Web browser implementations do not permit arbitrary third parties to read the response from authenticated APIs, however. This reduces the risk somewhat. This misconfiguration could be used by an attacker to access data that is available in an unauthenticated manner, but which uses some other form of security, such as IP address white-listing.`
 * URL: https://edge-consumer-static.azureedge.net/mouse-gesture/config.json
   * Node Name: `https://edge-consumer-static.azureedge.net/mouse-gesture/config.json`
   * Method: `GET`
@@ -170,7 +84,7 @@ Web browser data loading may be possible, due to a Cross Origin Resource Sharing
   * Other Info: `The CORS misconfiguration on the web server permits cross-domain read requests from arbitrary third party domains, using unauthenticated APIs on this domain. Web browser implementations do not permit arbitrary third parties to read the response from authenticated APIs, however. This reduces the risk somewhat. This misconfiguration could be used by an attacker to access data that is available in an unauthenticated manner, but which uses some other form of security, such as IP address white-listing.`
 
 
-Instances: 2
+Instances: 1
 
 ### Solution
 
@@ -187,72 +101,6 @@ Configure the "Access-Control-Allow-Origin" HTTP header to a more restrictive se
 
 
 #### WASC Id: 14
-
-#### Source ID: 3
-
-### [ Cookie No HttpOnly Flag ](https://www.zaproxy.org/docs/alerts/10010/)
-
-
-
-##### Low (Medium)
-
-### Description
-
-A cookie has been set without the HttpOnly flag, which means that the cookie can be accessed by JavaScript. If a malicious script can be run on this page then the cookie will be accessible and can be transmitted to another site. If this is a session cookie then session hijacking may be possible.
-
-* URL: http://127.0.0.1:8000/
-  * Node Name: `http://127.0.0.1:8000/`
-  * Method: `GET`
-  * Parameter: `csrftoken`
-  * Attack: ``
-  * Evidence: `Set-Cookie: csrftoken`
-  * Other Info: ``
-* URL: http://127.0.0.1:8000/login/%3Fnext=/
-  * Node Name: `http://127.0.0.1:8000/login/ (next)`
-  * Method: `GET`
-  * Parameter: `csrftoken`
-  * Attack: ``
-  * Evidence: `Set-Cookie: csrftoken`
-  * Other Info: ``
-* URL: http://127.0.0.1:8000/producto/nuevo/
-  * Node Name: `http://127.0.0.1:8000/producto/nuevo/`
-  * Method: `GET`
-  * Parameter: `csrftoken`
-  * Attack: ``
-  * Evidence: `Set-Cookie: csrftoken`
-  * Other Info: ``
-* URL: http://127.0.0.1:8000/login/%3Fnext=/producto/2/
-  * Node Name: `http://127.0.0.1:8000/login/ (next)(csrfmiddlewaretoken,password,username)`
-  * Method: `POST`
-  * Parameter: `csrftoken`
-  * Attack: ``
-  * Evidence: `Set-Cookie: csrftoken`
-  * Other Info: ``
-* URL: http://127.0.0.1:8000/producto/nuevo/
-  * Node Name: `http://127.0.0.1:8000/producto/nuevo/ ()(csrfmiddlewaretoken,descripcion,nombre,precio,stock)`
-  * Method: `POST`
-  * Parameter: `csrftoken`
-  * Attack: ``
-  * Evidence: `Set-Cookie: csrftoken`
-  * Other Info: ``
-
-Instances: Systemic
-
-
-### Solution
-
-Ensure that the HttpOnly flag is set for all cookies.
-
-### Reference
-
-
-* [ https://owasp.org/www-community/HttpOnly ](https://owasp.org/www-community/HttpOnly)
-
-
-#### CWE Id: [ 1004 ](https://cwe.mitre.org/data/definitions/1004.html)
-
-
-#### WASC Id: 13
 
 #### Source ID: 3
 
@@ -356,17 +204,9 @@ The Anti-MIME-Sniffing header X-Content-Type-Options was not set to 'nosniff'. T
   * Evidence: ``
   * Other Info: `This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.
 At "High" threshold this scan rule will not alert on client or server error responses.`
-* URL: https://xpaywalletcdn-prod.azureedge.net/mswallet/ExpressCheckout/v1/GetGlobalConfig%3FEdgeChannel=stable&EdgeVersion=157.0.4341.57&ConfigVersion=0&ConfigType=DAF_CFG
-  * Node Name: `https://xpaywalletcdn-prod.azureedge.net/mswallet/ExpressCheckout/v1/GetGlobalConfig (ConfigType,ConfigVersion,EdgeChannel,EdgeVersion)`
-  * Method: `GET`
-  * Parameter: `x-content-type-options`
-  * Attack: ``
-  * Evidence: ``
-  * Other Info: `This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.
-At "High" threshold this scan rule will not alert on client or server error responses.`
 
 
-Instances: 2
+Instances: 1
 
 ### Solution
 
@@ -453,16 +293,9 @@ The cache-control header has not been set properly or is missing, allowing the b
   * Attack: ``
   * Evidence: `public, max-age=432000`
   * Other Info: ``
-* URL: https://xpaywalletcdn-prod.azureedge.net/mswallet/ExpressCheckout/v1/GetGlobalConfig%3FEdgeChannel=stable&EdgeVersion=157.0.4341.57&ConfigVersion=0&ConfigType=DAF_CFG
-  * Node Name: `https://xpaywalletcdn-prod.azureedge.net/mswallet/ExpressCheckout/v1/GetGlobalConfig (ConfigType,ConfigVersion,EdgeChannel,EdgeVersion)`
-  * Method: `GET`
-  * Parameter: `cache-control`
-  * Attack: ``
-  * Evidence: ``
-  * Other Info: ``
 
 
-Instances: 2
+Instances: 1
 
 ### Solution
 
@@ -514,29 +347,22 @@ The given response has been identified as containing a session management token.
   * Attack: ``
   * Evidence: `csrftoken`
   * Other Info: `cookie:csrftoken`
-* URL: http://127.0.0.1:8000/producto/3/editar/
-  * Node Name: `http://127.0.0.1:8000/producto/3/editar/`
+* URL: http://127.0.0.1:8000/producto/1/
+  * Node Name: `http://127.0.0.1:8000/producto/1/`
   * Method: `GET`
   * Parameter: `csrftoken`
   * Attack: ``
   * Evidence: `csrftoken`
   * Other Info: `cookie:csrftoken`
-* URL: http://127.0.0.1:8000/producto/3/eliminar/
-  * Node Name: `http://127.0.0.1:8000/producto/3/eliminar/`
+* URL: http://127.0.0.1:8000/producto/5/editar/
+  * Node Name: `http://127.0.0.1:8000/producto/5/editar/`
   * Method: `GET`
   * Parameter: `csrftoken`
   * Attack: ``
   * Evidence: `csrftoken`
   * Other Info: `cookie:csrftoken`
-* URL: http://127.0.0.1:8000/producto/4/editar/
-  * Node Name: `http://127.0.0.1:8000/producto/4/editar/`
-  * Method: `GET`
-  * Parameter: `csrftoken`
-  * Attack: ``
-  * Evidence: `csrftoken`
-  * Other Info: `cookie:csrftoken`
-* URL: http://127.0.0.1:8000/producto/4/eliminar/
-  * Node Name: `http://127.0.0.1:8000/producto/4/eliminar/`
+* URL: http://127.0.0.1:8000/producto/5/eliminar/
+  * Node Name: `http://127.0.0.1:8000/producto/5/eliminar/`
   * Method: `GET`
   * Parameter: `csrftoken`
   * Attack: ``
@@ -594,7 +420,7 @@ cookie:sessionid`
   * Other Info: `cookie:sessionid`
 
 
-Instances: 14
+Instances: 13
 
 ### Solution
 
@@ -640,6 +466,24 @@ ana`
 * URL: http://127.0.0.1:8000/producto/nuevo/
   * Node Name: `http://127.0.0.1:8000/producto/nuevo/ ()(csrfmiddlewaretoken,descripcion,nombre,precio,stock)`
   * Method: `POST`
+  * Parameter: `descripcion`
+  * Attack: ``
+  * Evidence: ``
+  * Other Info: `User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:
+
+http://127.0.0.1:8000/producto/nuevo/
+
+appears to include user input in:
+a(n) [input] tag [value] attribute
+
+The user input found was:
+descripcion=com
+
+The user-controlled value was:
+comidaperro3`
+* URL: http://127.0.0.1:8000/producto/nuevo/
+  * Node Name: `http://127.0.0.1:8000/producto/nuevo/ ()(csrfmiddlewaretoken,descripcion,nombre,precio,stock)`
+  * Method: `POST`
   * Parameter: `nombre`
   * Attack: ``
   * Evidence: ``
@@ -651,10 +495,10 @@ appears to include user input in:
 a(n) [input] tag [value] attribute
 
 The user input found was:
-nombre=comida perro
+nombre=comidaperro3
 
 The user-controlled value was:
-comida perro`
+comidaperro3`
 * URL: http://127.0.0.1:8000/producto/nuevo/
   * Node Name: `http://127.0.0.1:8000/producto/nuevo/ ()(csrfmiddlewaretoken,descripcion,nombre,precio,stock)`
   * Method: `POST`
@@ -693,7 +537,7 @@ The user-controlled value was:
 20`
 
 
-Instances: 4
+Instances: 5
 
 ### Solution
 
