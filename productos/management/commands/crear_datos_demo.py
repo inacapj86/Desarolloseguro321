@@ -25,10 +25,10 @@ class Command(BaseCommand):
         except ValidationError as error:
             raise CommandError("Clave rechazada: " + " ".join(error.messages))
 
-        User = get_user_model()
+        modelo_usuario = get_user_model()
         cuentas = {}
         for nombre, es_personal in (("ana", False), ("beto", False), ("jefa", True)):
-            usuario, _ = User.objects.get_or_create(username=nombre)
+            usuario, _ = modelo_usuario.objects.get_or_create(username=nombre)
             usuario.is_staff = es_personal
             usuario.set_password(clave)
             usuario.save()
