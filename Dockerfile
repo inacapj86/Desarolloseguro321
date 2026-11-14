@@ -10,7 +10,13 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-COPY . .
+# Solo lo que la aplicacion necesita (no se copia el contexto completo).
+COPY manage.py ./
+COPY crud_django ./crud_django
+COPY productos ./productos
+COPY templates ./templates
+COPY static ./static
+COPY theme ./theme
 
 # Usuario sin privilegios y carpeta /data para la base SQLite (volumen).
 RUN useradd --system --create-home app \
